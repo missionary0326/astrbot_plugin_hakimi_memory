@@ -1,0 +1,9 @@
+name: astrbot_plugin_hakimi_memory
+display_name: 哈基米四层记忆
+desc: 私聊原文即时落盘、Ollama增量向量检索、有来源的事件事实、私密日记和可撤销成长
+version: v1.0.1
+author: missionary0326
+repo: https://github.com/missionary0326/astrbot_plugin_hakimi_memory
+astrbot_version: '>=4.29.1'
+support_platforms:
+  - aiocqhttp

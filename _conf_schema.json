@@ -1,0 +1,85 @@
+{
+  "enabled": {
+    "type": "bool",
+    "description": "启用哈基米四层记忆",
+    "default": false
+  },
+  "summary_provider_id": {
+    "type": "string",
+    "description": "记忆整理模型（可独立更换 API）",
+    "_special": "select_provider",
+    "default": "",
+    "hint": "先在模型提供商添加地址、模型和密钥，再在此选择。留空时保留原文和索引，暂停整理。"
+  },
+  "diary_provider_id": {
+    "type": "string",
+    "description": "日记写作模型（可与整理模型不同）",
+    "_special": "select_provider",
+    "default": "",
+    "hint": "每天北京时间03:00整理前一天；关机后启动补写。不会主动发送。"
+  },
+  "ollama_url": {
+    "type": "string",
+    "description": "本地 Ollama 地址",
+    "default": "http://127.0.0.1:11434"
+  },
+  "embedding_model": {
+    "type": "string",
+    "description": "本地向量模型",
+    "default": "bge-m3",
+    "hint": "切换后自动重建向量。Ollama生成向量，本插件保存原文和索引。"
+  },
+  "retrieval_timeout_seconds": {
+    "type": "int",
+    "description": "本地检索等待上限（秒）",
+    "default": 4,
+    "hint": "超时退回关键词和当前事实。实测冷启动存在约2秒以上波动，默认预留4秒。"
+  },
+  "ollama_executable": {
+    "type": "string",
+    "description": "Ollama 程序路径",
+    "default": "",
+    "hint": "通常留空，由你自己运行 Ollama。填写本机程序路径后可在插件启用时尝试启动；不自动安装或下载模型。"
+  },
+  "data_dir": {
+    "type": "string",
+    "description": "记忆数据目录",
+    "default": "",
+    "hint": "留空使用 AstrBot 的插件数据目录。此目录含私聊资料，不要提交到Git。"
+  },
+  "target_umo": {
+    "type": "string",
+    "description": "启用的私聊 UMO",
+    "default": "",
+    "hint": "必填。使用 /sid 获得完整 UMO；本版仅允许 FriendMessage 私聊。"
+  },
+  "owner_uid": {
+    "type": "string",
+    "description": "允许记录和管理记忆的用户 UID",
+    "default": "",
+    "hint": "必填。仅指定私聊账号的数据会被记录；未设置时不采集。"
+  },
+  "persona_id": {
+    "type": "string",
+    "description": "对应人格 ID（与现有绑定一致）",
+    "default": "default",
+    "hint": "填写该私聊绑定的人格ID，必须精确一致；不匹配时停止采集，避免人设串档。"
+  },
+  "summary_turns": {
+    "type": "int",
+    "description": "后台整理间隔（有效对话轮数）",
+    "default": 10,
+    "hint": "仅影响API提炼事件和事实；原文即时保存，切片和向量独立更新。"
+  },
+  "summary_idle_seconds": {
+    "type": "int",
+    "description": "有新消息且空闲多少秒后整理",
+    "default": 600
+  },
+  "diary_persona_prompt": {
+    "type": "text",
+    "description": "日记角色设定（可选）",
+    "default": "",
+    "hint": "只影响日记表达，不会修改 AstrBot 人格。留空时使用自然平实的第一人称。"
+  }
+}
